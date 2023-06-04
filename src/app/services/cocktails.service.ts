@@ -10,6 +10,7 @@ import { throwError } from 'rxjs';
 })
 export class CocktailsService {
   private constants = this.serviceConstants.COCKTAILS_URL;
+  private baseUrl: string = this.serviceConstants.CORS_FIX_URL + this.constants.BASE_COCKTAILS_URL;
 
   constructor(private serviceConstants: ServiceConstants, private http: HttpClient) { }
 
@@ -18,7 +19,7 @@ export class CocktailsService {
   // Search for cocktails
   // The two allowed parameters for this api are name(name) and first letter(letter)
   search(type: string, paramter: string) {
-    const url: string = this.constants.BASE_COCKTAILS_URL + this.constants.SEARCH_COCKTAILS_URL + '?' + this.getValue(type) + '=' + paramter;
+    const url: string = this.baseUrl + this.constants.SEARCH_COCKTAILS_URL + '?' + this.getValue(type) + '=' + paramter;
     return this.http.get<DrinkResponse>(url)
       .pipe(
         map((response: DrinkResponse) => {
@@ -31,7 +32,7 @@ export class CocktailsService {
   // Search for ingredients
   // The only allowed parameter is the name(ingredient)
   searchIngredients(paramter: string) {
-    const url: string = this.constants.BASE_COCKTAILS_URL + this.constants.SEARCH_COCKTAILS_URL + '?i=' + paramter;
+    const url: string = this.baseUrl + this.constants.SEARCH_COCKTAILS_URL + '?i=' + paramter;
     return this.http.get<IngredientResponse>(url)
       .pipe(
         map((response: IngredientResponse) => {
@@ -43,7 +44,7 @@ export class CocktailsService {
 
   // Lookup cocktails based on the cocktail's id
   lookup(paramter: string) {
-    const url: string = this.constants.BASE_COCKTAILS_URL + this.constants.LOOKUP_COCKTAILS_URL + '?i=' + paramter;
+    const url: string = this.baseUrl + this.constants.LOOKUP_COCKTAILS_URL + '?i=' + paramter;
     return this.http.get<DrinkResponse>(url)
       .pipe(
         map((response: DrinkResponse) => {
@@ -55,7 +56,7 @@ export class CocktailsService {
 
   // Lookup ingredients based on the ingredient's id
   lookupIngredients(paramter: string) {
-    const url: string = this.constants.BASE_COCKTAILS_URL + this.constants.LOOKUP_COCKTAILS_URL + '?iid=' + paramter;
+    const url: string = this.baseUrl + this.constants.LOOKUP_COCKTAILS_URL + '?iid=' + paramter;
     return this.http.get<IngredientResponse>(url)
       .pipe(
         map((response: IngredientResponse) => {
@@ -67,7 +68,7 @@ export class CocktailsService {
 
   // Gets a random cocktail
   random() {
-    const url: string = this.constants.BASE_COCKTAILS_URL + this.constants.RANDOM_COCKTAILS_URL;
+    const url: string = this.baseUrl + this.constants.RANDOM_COCKTAILS_URL;
     return this.http.get<DrinkResponse>(url)
       .pipe(
         map((response: DrinkResponse) => {
@@ -80,7 +81,7 @@ export class CocktailsService {
   // Filters cocktails based on different conditions
   // The different parameters allowed are ingredients, alchoholic, category, and glass
   filter(type: string, paramter: string) {
-    const url: string = this.constants.BASE_COCKTAILS_URL + this.constants.FILTER_COCKTAILS_URL + '?' + this.getValue(type) + '=' + paramter;
+    const url: string = this.baseUrl + this.constants.FILTER_COCKTAILS_URL + '?' + this.getValue(type) + '=' + paramter;
     return this.http.get<DrinkResponse>(url)
       .pipe(
         map((response: DrinkResponse) => {
@@ -92,7 +93,7 @@ export class CocktailsService {
 
   // Lists all available categories that can be filtered by
   listCategories(type: string) {
-    const url: string = this.constants.BASE_COCKTAILS_URL + this.constants.LIST_COCKTAILS_URL + '?c=list';
+    const url: string = this.baseUrl + this.constants.LIST_COCKTAILS_URL + '?c=list';
     return this.http.get<CategoryListResponse>(url)
       .pipe(
         map((response: CategoryListResponse) => {
@@ -104,7 +105,7 @@ export class CocktailsService {
 
   // Lists all available ingredients that can be filtered by
   listIngredients(type: string) {
-    const url: string = this.constants.BASE_COCKTAILS_URL + this.constants.LIST_COCKTAILS_URL + '?i=list';
+    const url: string = this.baseUrl + this.constants.LIST_COCKTAILS_URL + '?i=list';
     return this.http.get<IngredientListResponse>(url)
       .pipe(
         map((response: IngredientListResponse) => {
@@ -116,7 +117,7 @@ export class CocktailsService {
 
   // Lists all available glasses that can be filtered by
   listGlasses(type: string) {
-    const url: string = this.constants.BASE_COCKTAILS_URL + this.constants.LIST_COCKTAILS_URL + '?g=list';
+    const url: string = this.baseUrl + this.constants.LIST_COCKTAILS_URL + '?g=list';
     return this.http.get<GlassesListResponse>(url)
       .pipe(
         map((response: GlassesListResponse) => {
@@ -128,7 +129,7 @@ export class CocktailsService {
 
   // Lists all alchohol that can be filted by
   listAlchohol(type: string) {
-    const url: string = this.constants.BASE_COCKTAILS_URL + this.constants.LIST_COCKTAILS_URL + '?a=list';
+    const url: string = this.baseUrl + this.constants.LIST_COCKTAILS_URL + '?a=list';
     return this.http.get<AlchoholListResponse>(url)
       .pipe(
         map((response: AlchoholListResponse) => {
