@@ -14,6 +14,9 @@ export class FruitsService {
 
   constructor(private serviceConstants: ServiceConstants, private http: HttpClient) { }
 
+  // These are the api call wrappers
+
+  // Gets all available fruits
   all() {
     const url: string = this.baseUrl + this.constants.ALL_FRUITS_URL;
     return this.http.get<Fruit[]>(url)
@@ -22,6 +25,8 @@ export class FruitsService {
       );
   }
 
+  // Searchs for a fruit based on nutritional value
+  // min and max are optional values, one or both can be used
   nutrition(nutrition: string, min?: string, max?: string) {
     let url: string = this.baseUrl + nutrition + '?';
 
@@ -39,6 +44,7 @@ export class FruitsService {
       );
   }
 
+  // Searches for a fruit based on the family of the fruit
   family(family: string) {
     const url: string = this.baseUrl + this.constants.FAMILY_FRUITS_URL + family;
     return this.http.get<Fruit[]>(url)
@@ -47,6 +53,7 @@ export class FruitsService {
       );
   }
 
+  // Searches for a fruit based on the genus of the fruit
   genus(genus: string) {
     const url: string = this.baseUrl + this.constants.GENUS_FRUITS_URL + genus;
     return this.http.get<Fruit[]>(url)
@@ -55,6 +62,7 @@ export class FruitsService {
       );
   }
 
+  // Searches for a fruit based on the order of the fruit
   order(order: string) {
     const url: string = this.baseUrl + this.constants.ORDER_FRUITS_URL + order;
     return this.http.get<Fruit[]>(url)
@@ -63,6 +71,9 @@ export class FruitsService {
       );
   }
 
+  // These are the helper functions
+
+  // Lists all available nutritions that can be searched upon
   listNutritions() {
     const list: string[] = ['calories', 'fat', 'sugar', 'carbohydrates', 'protein'];
     return of(list)
@@ -78,6 +89,9 @@ export class FruitsService {
   }
 }
 
+// Interfaces for the api calls
+
+// General fruit object
 export interface Fruit {
   name: string;
   id: number;
@@ -87,6 +101,7 @@ export interface Fruit {
   nutritions: Nutritions;
 }
 
+// Nutritional information object used in the fruit interface
 export interface Nutritions {
   calories: number;
   fat: number;
