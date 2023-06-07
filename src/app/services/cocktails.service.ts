@@ -82,17 +82,17 @@ export class CocktailsService {
   // The different parameters allowed are ingredients, alchoholic, category, and glass
   filter(type: string, paramter: string) {
     const url: string = this.baseUrl + this.constants.FILTER_COCKTAILS_URL + this.getValue(type) + '=' + paramter;
-    return this.http.get<DrinkResponse>(url)
+    return this.http.get<FilterDrinkResponse>(url)
       .pipe(
-        map((response: DrinkResponse) => {
-          return this.condenseObject(response);
+        map((response: FilterDrinkResponse) => {
+          return response.drinks;
         }),
         catchError(this.handleError)
       );
   }
 
   // Lists all available categories that can be filtered by
-  listCategories(type: string) {
+  listCategories() {
     const url: string = this.baseUrl + this.constants.LIST_COCKTAILS_URL + 'c=list';
     return this.http.get<CategoryListResponse>(url)
       .pipe(
@@ -104,7 +104,7 @@ export class CocktailsService {
   }
 
   // Lists all available ingredients that can be filtered by
-  listIngredients(type: string) {
+  listIngredients() {
     const url: string = this.baseUrl + this.constants.LIST_COCKTAILS_URL + 'i=list';
     return this.http.get<IngredientListResponse>(url)
       .pipe(
@@ -116,7 +116,7 @@ export class CocktailsService {
   }
 
   // Lists all available glasses that can be filtered by
-  listGlasses(type: string) {
+  listGlasses() {
     const url: string = this.baseUrl + this.constants.LIST_COCKTAILS_URL + 'g=list';
     return this.http.get<GlassesListResponse>(url)
       .pipe(
@@ -128,7 +128,7 @@ export class CocktailsService {
   }
 
   // Lists all alchohol that can be filted by
-  listAlchohol(type: string) {
+  listAlchohol() {
     const url: string = this.baseUrl + this.constants.LIST_COCKTAILS_URL + 'a=list';
     return this.http.get<AlchoholListResponse>(url)
       .pipe(
@@ -360,6 +360,18 @@ export interface IngredientItem {
   strType: string;
   strAlcohol: string;
   strABV: string;
+}
+
+// Interface used to hold the response from the filter endpoint
+interface FilterDrinkResponse {
+  drinks: FilterDrink[];
+}
+
+// The object recieved when using a filter endpoint
+export interface FilterDrink {
+  strDrink: string;
+  strDrinkThumb: string;
+  idDrink: string;
 }
 
 // Interface used to hold the response for the list of categories
