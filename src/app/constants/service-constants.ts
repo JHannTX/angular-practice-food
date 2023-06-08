@@ -24,11 +24,12 @@ export class ServiceConstants {
     };
 
     public MEALS_URL = {
-        BASE_MEALS_URL: 'www.themealdb.com/api/json/v1/1/',
+        BASE_MEALS_URL: 'http://www.themealdb.com/api/json/v1/1/',
         SEARCH_MEALS_URL: 'search.php?',
         LOOKUP_MEALS_URL: 'lookup.php?i=',
         RANDOM_MEALS_URL: 'random.php',
         LIST_MEALS_URL: 'list.php?',
         FILTER_MEALS_URL: 'filter.php?',
+        CATEGORIES_MEALS_URL: 'categories.php'
     };
 }
