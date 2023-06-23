@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CocktailsService } from './services/cocktails.service';
 import { FruitsService } from './services/fruits.service';
+import { MealsService } from './services/meals.service';
 
 @Component({
   selector: 'fd-app',
@@ -10,7 +11,9 @@ import { FruitsService } from './services/fruits.service';
 export class AppComponent {
   title = 'food';
 
-  constructor(private cocktailsService: CocktailsService, private fruitsService: FruitsService) {}
+  constructor(private cocktailsService: CocktailsService, 
+    private fruitsService: FruitsService,
+    private mealsService: MealsService) {}
 
   ngOnInit() {
     this.cocktailsService.search('name', 'margarita')
@@ -18,8 +21,13 @@ export class AppComponent {
         console.log(response);
       });
 
-      this.fruitsService.all()
+    this.fruitsService.all()
       .subscribe((response) => {
+        console.log(response);
+      });
+
+    this.mealsService.search('letter', 'a')
+      .subscribe(response => {
         console.log(response);
       });
   }
