@@ -14,7 +14,7 @@ export class FruitNavigatorComponent {
 
   ngOnInit() {
     if(!this.isComingFromList) {
-      this.prefix = '';
+      this.prefix = '../fruit';
     }
   }
 }
