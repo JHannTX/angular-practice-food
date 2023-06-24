@@ -1,10 +1,10 @@
 <p>fruit-navigator works!</p>
 <header>
     <nav>
-        <a routerLink="all">All</a>
-        <a routerLink="nutrition">Nutrition</a>
-        <a routerLink="family">Family</a>
-        <a routerLink="genus">Genus</a>
-        <a routerLink="order">Order</a>
+        <a [routerLink]="[prefix, 'all']">All</a>
+        <a [routerLink]="[prefix, 'nutrition']">Nutrition</a>
+        <a [routerLink]="[prefix, 'family']" >Family</a>
+        <a [routerLink]="[prefix, 'genus']">Genus</a>
+        <a [routerLink]="[prefix, 'order']">Order</a>
     </nav>
 </header>

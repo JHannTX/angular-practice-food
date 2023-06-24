@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'fd-fruit-navigator',
@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./fruit-navigator.component.css']
 })
 export class FruitNavigatorComponent {
+  // Bindable
+  @Input() isComingFromList: boolean = true;
 
+  // For use with component
+  prefix: string = '..';
+
+  ngOnInit() {
+    if(!this.isComingFromList) {
+      this.prefix = '';
+    }
+  }
 }
