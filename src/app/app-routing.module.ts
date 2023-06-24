@@ -5,7 +5,8 @@ import { FruitModule } from './fruit-pages/fruit.module';
 const routes: Routes = [
   {
     path: 'fruit',
-    loadChildren: () => import('./fruit-pages/fruit.module').then(m => m.FruitModule)
+    loadChildren: () => import('./fruit-pages/fruit.module').then(m => m.FruitModule),
+    title: 'Fruit'
   },
   {
     path: '',
