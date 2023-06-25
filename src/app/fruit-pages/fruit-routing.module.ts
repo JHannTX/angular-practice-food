@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NotFoundComponent } from '../shared/not-found/not-found.component';
 import { FruitHomeComponent } from './fruit-home/fruit-home.component';
 import { FruitListComponent } from './fruit-list/fruit-list.component';
 
@@ -12,6 +13,10 @@ const routes: Routes = [
     path: ':type',
     component: FruitListComponent
   },
+  {
+    path: '**',
+    component: NotFoundComponent
+  }
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FruitModule } from './fruit-pages/fruit.module';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -12,6 +12,10 @@ const routes: Routes = [
     path: '',
     redirectTo: '',
     pathMatch: 'full'
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 
