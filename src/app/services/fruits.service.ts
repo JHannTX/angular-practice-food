@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError } from 'rxjs/operators';
+import { NUTRITION_LIST } from '../constants/fruit-constants';
 import { ServiceConstants } from '../constants/service-constants';
 
 @Injectable({
@@ -12,7 +13,8 @@ export class FruitsService {
   private constants = this.serviceConstants.FRUITS_URL;
   private baseUrl = this.serviceConstants.CORS_FIX_URL + this.constants.BASE_FRUITS_URL;
 
-  constructor(private serviceConstants: ServiceConstants, private http: HttpClient) { }
+  constructor(private serviceConstants: ServiceConstants, 
+    private http: HttpClient) { }
 
   // These are the api call wrappers
 
@@ -75,7 +77,7 @@ export class FruitsService {
 
   // Lists all available nutritions that can be searched upon
   listNutritions() {
-    const list: string[] = ['calories', 'fat', 'sugar', 'carbohydrates', 'protein'];
+    const list: string[] = NUTRITION_LIST;
     return of(list)
       .pipe(
         catchError(this.handleError)

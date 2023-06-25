@@ -1,0 +1,1 @@
+export const NUTRITION_LIST: string[] = ['calories', 'fat', 'sugar', 'carbohydrates', 'protein'];
