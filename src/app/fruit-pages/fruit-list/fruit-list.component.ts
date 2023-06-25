@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Fruit } from 'src/app/services/fruits.service';
+import { Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
+
+import { Fruit, FruitsService } from 'src/app/services/fruits.service';
 
 @Component({
   selector: 'fd-fruit-list',
@@ -8,23 +11,27 @@ import { Fruit } from 'src/app/services/fruits.service';
   styleUrls: ['./fruit-list.component.css']
 })
 export class FruitListComponent {
-  fruits: Fruit[] = [];
+  type: string = '';
   needSearch: boolean = false;
   needSelector: boolean = false;
+
+  fruit$?: Observable<Fruit[]>;
   
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(private activatedRoute: ActivatedRoute, private fruitService: FruitsService) {}
 
   ngOnInit() {
     this.activatedRoute.paramMap
       .subscribe((paramMap) => {
         this.needSearch = false;
         this.needSelector = false;
-        let type = paramMap.get('type');
-        if(type?.toLowerCase() === 'nutrition') {
+        this.type = paramMap.get('type')!;
+        if(this.type?.toLowerCase() === 'nutrition') {
           this.needSelector = true;
-        } else if(type?.toLowerCase() !== 'all') {
+        } else if(this.type?.toLowerCase() !== 'all') {
           this.needSearch = true;
         }
       });
+
+      this.fruit$ = this.fruitService.all();
   }
 }
