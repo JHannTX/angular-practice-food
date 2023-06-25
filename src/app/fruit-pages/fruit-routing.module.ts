@@ -14,11 +14,6 @@ const routes: Routes = [
   },
 ];
 
-//if the type has a selection, make a selection
-//one has zero selection
-//one has a list selection
-//three have a search
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
