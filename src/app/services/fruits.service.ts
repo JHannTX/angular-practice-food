@@ -77,8 +77,7 @@ export class FruitsService {
 
   // Lists all available nutritions that can be searched upon
   listNutritions() {
-    const list: string[] = NUTRITION_LIST;
-    return of(list)
+    return of(NUTRITION_LIST)
       .pipe(
         catchError(this.handleError)
       );
