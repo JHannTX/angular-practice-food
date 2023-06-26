@@ -8,6 +8,7 @@ import { FruitNavigatorComponent } from './fruit-navigator/fruit-navigator.compo
 import { FruitSelectorComponent } from './fruit-selector/fruit-selector.component';
 import { FruitSearchComponent } from './fruit-search/fruit-search.component';
 import { FruitListItemComponent } from './fruit-list-item/fruit-list-item.component';
+import { FruitDetailsComponent } from './fruit-details/fruit-details.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FruitListItemComponent } from './fruit-list-item/fruit-list-item.compon
     FruitSelectorComponent,
     FruitSearchComponent,
     FruitListItemComponent,
+    FruitDetailsComponent,
   ],
   imports: [
     CommonModule,
