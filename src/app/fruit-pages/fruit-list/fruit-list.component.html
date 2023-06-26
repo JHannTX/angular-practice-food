@@ -1,4 +1,9 @@
 <fd-fruit-navigator></fd-fruit-navigator>
 <fd-fruit-selector *ngIf="needSelector"></fd-fruit-selector>
 <fd-fruit-search *ngIf="needSearch"></fd-fruit-search>
-<p>fruit-list works!</p>
+
+<p>This could be a table of items instead of just divs</p>
+<fd-fruit-list-item 
+    *ngFor="let fruit of fruits$ | async"
+    [fruit]="fruit">
+</fd-fruit-list-item>

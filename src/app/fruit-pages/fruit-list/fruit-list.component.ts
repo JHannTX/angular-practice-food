@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
 
 import { Fruit, FruitsService } from 'src/app/services/fruits.service';
 
@@ -15,7 +14,7 @@ export class FruitListComponent {
   needSearch: boolean = false;
   needSelector: boolean = false;
 
-  fruit$?: Observable<Fruit[]>;
+  fruits$?: Observable<Fruit[]>;
   
   constructor(private activatedRoute: ActivatedRoute, private fruitService: FruitsService) {}
 
@@ -32,6 +31,6 @@ export class FruitListComponent {
         }
       });
 
-      this.fruit$ = this.fruitService.all();
+    this.fruits$ = this.fruitService.all();
   }
 }
