@@ -7,14 +7,18 @@ import { Component, Input } from '@angular/core';
 })
 export class FruitNavigatorComponent {
   // Bindable
-  @Input() isComingFromList: boolean = true;
+  @Input() isComingFromHome: boolean = false;
+  @Input() isComingFromDetails: boolean = false;
+
 
   // For use with component
   prefix: string = '..';
 
   ngOnInit() {
-    if(!this.isComingFromList) {
+    if(this.isComingFromHome) {
       this.prefix = '../fruit';
+    } else if(this.isComingFromDetails) {
+      this.prefix = '../..'
     }
   }
 }
