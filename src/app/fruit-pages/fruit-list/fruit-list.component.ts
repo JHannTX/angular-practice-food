@@ -14,7 +14,7 @@ export class FruitListComponent {
   needSearch: boolean = false;
   needSelector: boolean = false;
 
-  fruits$?: Observable<Fruit[]>;
+  fruits$!: Observable<Fruit[]>;
   
   constructor(private activatedRoute: ActivatedRoute, private fruitService: FruitsService) {}
 
