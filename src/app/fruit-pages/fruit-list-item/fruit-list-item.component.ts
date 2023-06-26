@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Fruit } from 'src/app/services/fruits.service';
+import { Fruit, FruitsService } from 'src/app/services/fruits.service';
 
 @Component({
   selector: 'fd-fruit-list-item',
@@ -8,4 +8,10 @@ import { Fruit } from 'src/app/services/fruits.service';
 })
 export class FruitListItemComponent {
   @Input() fruit!: Fruit;
+
+  constructor(private fruitService: FruitsService) {}
+
+  onClick() {
+    this.fruitService.sendFruit(this.fruit);
+  }
 }

@@ -1,5 +1,5 @@
 <div>
     <p>Name: {{ fruit.name }}</p>
     <p>Genus: {{ fruit.genus }}</p>
-    <a [routerLink]="['../details', fruit.id]">Details</a>
+    <a [routerLink]="['../details', fruit.id]" (click)="onClick()">Details</a>
 </div>

@@ -1,3 +1,16 @@
 <fd-fruit-navigator [isComingFromDetails]="true"></fd-fruit-navigator>
 
 <p>fruit-details works!</p>
+
+<p>Name: {{ fruitItem.name }}</p>
+<p>Family: {{ fruitItem.family }}</p>
+<p>Order: {{ fruitItem.order }}</p>
+<p>Genus: {{ fruitItem.genus }}</p>
+<p>Nutritions:</p>
+<ul>
+    <li>Calories: {{ fruitItem.nutritions.calories }}</li>
+    <li>Fat: {{ fruitItem.nutritions.fat }}</li>
+    <li>Sugar: {{ fruitItem.nutritions.sugar }}</li>
+    <li>Carbohydrates: {{ fruitItem.nutritions.carbohydrates }}</li>
+    <li>Protein: {{ fruitItem.nutritions.protein }}</li>
+</ul>
