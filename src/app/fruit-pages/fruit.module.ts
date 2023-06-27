@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { FruitRoutingModule } from './fruit-routing.module';
 import { FruitHomeComponent } from './fruit-home/fruit-home.component';
@@ -23,6 +24,7 @@ import { FruitDetailsComponent } from './fruit-details/fruit-details.component';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     FruitRoutingModule
   ]
 })

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { Fruit, FruitsService } from 'src/app/services/fruits.service';
+import { NutritionSubmit } from '../utility/fruit-interfaces';
 
 @Component({
   selector: 'fd-fruit-list',
@@ -32,5 +33,9 @@ export class FruitListComponent {
       });
 
     this.fruits$ = this.fruitService.all();
+  }
+
+  onNutritionSubmission(nutrition: NutritionSubmit) {
+    this.fruits$ = this.fruitService.nutrition(nutrition.nutritions, nutrition.min, nutrition.max);
   }
 }

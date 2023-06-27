@@ -1,5 +1,5 @@
 <fd-fruit-navigator></fd-fruit-navigator>
-<fd-fruit-selector *ngIf="needSelector"></fd-fruit-selector>
+<fd-fruit-selector *ngIf="needSelector" (nutrition)="onNutritionSubmission($event)"></fd-fruit-selector>
 <fd-fruit-search *ngIf="needSearch"></fd-fruit-search>
 
 <p>This could be a table of items instead of just divs</p>
