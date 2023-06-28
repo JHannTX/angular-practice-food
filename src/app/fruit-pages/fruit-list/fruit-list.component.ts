@@ -26,7 +26,6 @@ export class FruitListComponent {
 
     this.activatedRoute.paramMap
       .subscribe((paramMap) => {
-        console.log('Hello from params', paramMap);
         this.needSearch = false;
         this.needSelector = false;
         this.type = paramMap.get('type')!;
