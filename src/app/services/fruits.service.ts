@@ -30,7 +30,7 @@ export class FruitsService {
 
   // Searchs for a fruit based on nutritional value
   // min and max are optional values, one or both can be used
-  nutrition(nutrition: string, min?: number, max?: number) {
+  nutrition(nutrition: string, min?: string, max?: string) {
     let url: string = this.baseUrl + nutrition + '?';
 
     if(min && max) {

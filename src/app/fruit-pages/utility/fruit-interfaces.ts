@@ -1,5 +1,1 @@
-export interface NutritionSubmit {
-    nutritions: string,
-    min: number,
-    max: number
-  }
+// Remove this if nothing ends up going in here
