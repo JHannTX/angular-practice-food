@@ -24,15 +24,11 @@ export class FruitListComponent {
     private paramsService: ParamsService) {}
 
   ngOnInit() {
-    console.log('Im here');
     merge(this.activatedRoute.paramMap, this.activatedRoute.queryParamMap)
       .subscribe((map: ParamMap) => {
-        console.log(map);
         if(map.has('type')) {
-          console.log('type', map);
           this.handleType(map.get('type')!);
         } else if(map.has('nutritions')) {
-          console.log('nutrition', map);
           let nutritionParams = this.paramsService.getNutritionParams();
           nutritionParams = this.paramsService.setNutritionParams({
             nutritions: map.get('nutritions') ?? nutritionParams.nutritions,
@@ -43,13 +39,11 @@ export class FruitListComponent {
 
         switch(this.type) {
           case 'all': {
-            console.log('Case all');
             this.fruits$ = this.fruitService.all();
             break;
           }
           case 'nutrition': {
             let params = this.paramsService.getNutritionParams();
-            console.log('Case nutrition', params);
             this.fruits$ = this.fruitService.nutrition(params.nutritions, params.min, params.max);
             break;
           }
@@ -71,12 +65,5 @@ export class FruitListComponent {
     } else if(this.type?.toLowerCase() !== 'all') {
       this.needSearch = true;
     }
-  }
-
-  private nutritionEquality(nutrition: string | null, min: string | null, max: string | null): boolean {
-    const nutritonParams = this.paramsService.getNutritionParams();
-    return (nutritonParams.nutritions === nutrition) && 
-      (nutritonParams.min === min) && 
-      (nutritonParams.max === max);
   }
 }
