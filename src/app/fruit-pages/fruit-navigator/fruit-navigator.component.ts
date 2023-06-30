@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NutritionSubmit, ParamsService } from 'src/app/services/utility/params.service';
 
 @Component({
   selector: 'fd-fruit-navigator',
@@ -6,13 +7,12 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./fruit-navigator.component.css']
 })
 export class FruitNavigatorComponent {
-  // Bindable
   @Input() isComingFromHome: boolean = false;
   @Input() isComingFromDetails: boolean = false;
 
-
-  // For use with component
   prefix: string = '..';
+
+  constructor(private paramsService: ParamsService) {}
 
   ngOnInit() {
     if(this.isComingFromHome) {
@@ -20,5 +20,9 @@ export class FruitNavigatorComponent {
     } else if(this.isComingFromDetails) {
       this.prefix = '../..'
     }
+  }
+
+  getNutritionParams(): NutritionSubmit {
+    return this.paramsService.getNutritionParams();
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { merge, Observable } from 'rxjs';
 
 import { Fruit, FruitsService } from 'src/app/services/fruits.service';
 import { NutritionSubmit, ParamsService } from 'src/app/services/utility/params.service';
@@ -15,6 +15,8 @@ export class FruitListComponent {
   needSearch: boolean = false;
   needSelector: boolean = false;
 
+
+
   fruits$!: Observable<Fruit[]>;
   
   constructor(private activatedRoute: ActivatedRoute, 
@@ -22,32 +24,28 @@ export class FruitListComponent {
     private paramsService: ParamsService) {}
 
   ngOnInit() {
-    this.fruits$ = this.fruitService.all();
-
-    this.activatedRoute.paramMap
-      .subscribe((paramMap) => {
-        this.needSearch = false;
-        this.needSelector = false;
-        this.type = paramMap.get('type')!;
-        if(this.type?.toLowerCase() === 'nutrition') {
-          this.needSelector = true;
-        } else if(this.type?.toLowerCase() !== 'all') {
-          this.needSearch = true;
+    merge(this.activatedRoute.paramMap, this.activatedRoute.queryParamMap)
+      .subscribe((map: ParamMap) => {
+        if(map.has('type')) {
+          this.handleType(map.get('type')!);
+        } else if(map.has('nutrition')) {
+          let nutritionParams = this.paramsService.getNutritionParams();
+          nutritionParams = this.paramsService.setNutritionParams({
+            nutritions: map.get('nutrition') ?? nutritionParams.nutritions,
+            min: map.get('min') ?? nutritionParams.min,
+            max: map.get('max') ?? nutritionParams.max
+          });
         }
-      });
 
-    this.activatedRoute.queryParamMap
-      .subscribe((queryMap) => {
-        if(this.type.toLowerCase() === 'nutrition') {
-          if(!this.nutritionEquality(queryMap.get('nutrition'), queryMap.get('min'), queryMap.get('max'))) {
-            let nutritionParams = this.paramsService.getNutritionParams();
-            nutritionParams = this.paramsService.setNutritionParams({
-              nutritions: queryMap.get('nutrition') ?? nutritionParams.nutritions,
-              min: queryMap.get('min') ?? nutritionParams.min,
-              max: queryMap.get('max') ?? nutritionParams.max
-            });
-
-            this.fruits$ = this.fruitService.nutrition(nutritionParams.nutritions, nutritionParams.min, nutritionParams.max);
+        switch(this.type) {
+          case 'all': {
+            this.fruits$ = this.fruitService.all();
+            break;
+          }
+          case 'nutrition': {
+            let params = this.paramsService.getNutritionParams();
+            this.fruits$ = this.fruitService.nutrition(params.nutritions, params.min, params.max);
+            break;
           }
         }
       });
@@ -56,6 +54,17 @@ export class FruitListComponent {
   onNutritionSubmission(nutrition: NutritionSubmit) {
     this.paramsService.setNutritionParams(nutrition);
     this.fruits$ = this.fruitService.nutrition(nutrition.nutritions, nutrition.min, nutrition.max);
+  }
+
+  private handleType(type: string): void {
+    this.needSearch = false;
+    this.needSelector = false;
+    this.type = type;
+    if(this.type?.toLowerCase() === 'nutrition') {
+      this.needSelector = true;
+    } else if(this.type?.toLowerCase() !== 'all') {
+      this.needSearch = true;
+    }
   }
 
   private nutritionEquality(nutrition: string | null, min: string | null, max: string | null): boolean {
