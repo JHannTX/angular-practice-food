@@ -43,6 +43,7 @@ export class FruitSelectorComponent {
         nutrition: nutrition.nutritions, 
         min: nutrition.min, 
         max: nutrition.max
-      }});
+      }
+    });
   }
 }
