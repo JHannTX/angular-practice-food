@@ -8,12 +8,4 @@ import { FruitsService } from 'src/app/services/fruits.service';
 })
 export class FruitHomeComponent {
 
-  constructor(private fruitsService: FruitsService) {}
-
-  ngOnInit() {
-    this.fruitsService.all()
-      .subscribe((response) => {
-        console.log(response);
-      });
-  }
 }
