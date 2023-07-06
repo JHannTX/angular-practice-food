@@ -15,8 +15,6 @@ export class FruitListComponent {
   needSearch: boolean = false;
   needSelector: boolean = false;
 
-
-
   fruits$!: Observable<Fruit[]>;
   
   constructor(private activatedRoute: ActivatedRoute, 
@@ -35,25 +33,23 @@ export class FruitListComponent {
             min: map.get('min') ?? nutritionParams.min,
             max: map.get('max') ?? nutritionParams.max
           });
+        } else if(map.has('term')) {
+          let term = this.paramsService.getFruitSearch();
+          term = this.paramsService.setFruitSearch(map.get('term') ?? term);
         }
 
-        switch(this.type) {
-          case 'all': {
-            this.fruits$ = this.fruitService.all();
-            break;
-          }
-          case 'nutrition': {
-            let params = this.paramsService.getNutritionParams();
-            this.fruits$ = this.fruitService.nutrition(params.nutritions, params.min, params.max);
-            break;
-          }
-        }
+        this.handleObservable();
       });
   }
 
   onNutritionSubmission(nutrition: NutritionSubmit) {
     this.paramsService.setNutritionParams(nutrition);
     this.fruits$ = this.fruitService.nutrition(nutrition.nutritions, nutrition.min, nutrition.max);
+  }
+
+  onSearchSubmission(term: string) {
+    this.paramsService.setFruitSearch(term);
+    this.handleObservable();
   }
 
   private handleType(type: string): void {
@@ -64,6 +60,47 @@ export class FruitListComponent {
       this.needSelector = true;
     } else if(this.type?.toLowerCase() !== 'all') {
       this.needSearch = true;
+    }
+  }
+
+  private handleObservable(): void {
+    switch(this.type) {
+      case 'all': {
+        this.fruits$ = this.fruitService.all();
+        break;
+      }
+      case 'nutrition': {
+        let params = this.paramsService.getNutritionParams();
+        this.fruits$ = this.fruitService.nutrition(params.nutritions, params.min, params.max);
+        break;
+      }
+      case 'family': {
+        let params = this.paramsService.getFruitSearch();
+        if(params === '') {
+          this.fruits$ = this.fruitService.all();
+        } else {
+          this.fruits$ = this.fruitService.family(params);
+        }
+        break;
+      }
+      case 'order': {
+        let params = this.paramsService.getFruitSearch();
+        if(params === '') {
+          this.fruits$ = this.fruitService.all();
+        } else {
+          this.fruits$ = this.fruitService.order(params);
+        }
+        break;
+      }
+      case 'genus': {
+        let params = this.paramsService.getFruitSearch();
+        if(params === '') {
+          this.fruits$ = this.fruitService.all();
+        } else {
+          this.fruits$ = this.fruitService.genus(params);
+        }
+        break;
+      }
     }
   }
 }

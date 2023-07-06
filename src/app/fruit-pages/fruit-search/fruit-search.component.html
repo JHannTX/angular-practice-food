@@ -1,1 +1,5 @@
-<p>fruit-search works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <label for="term">Search by:</label>
+    <input type="search" name="term" id="term" formControlName="term">
+    <input type="submit" value="Search">
+</form>

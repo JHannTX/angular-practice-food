@@ -13,7 +13,8 @@ export class ParamsService {
           nutritions: 'calories',
           min: '0',
           max: '1000'
-        }
+        },
+        term: ''
       }
     }
   }
@@ -26,14 +27,24 @@ export class ParamsService {
   getNutritionParams(): NutritionSubmit {
     return this.params.fruit.nutritions;
   }
+
+  setFruitSearch(term: string): string {
+    this.params.fruit.term = term;
+    return term;
+  }
+
+  getFruitSearch(): string {
+    return this.params.fruit.term;
+  }
 }
 
-export interface GeneralParams {
+interface GeneralParams {
   fruit: FruitQueryParams
 }
 
-export interface FruitQueryParams {
+interface FruitQueryParams {
   nutritions: NutritionSubmit,
+  term: string
 }
 
 export interface NutritionSubmit {
