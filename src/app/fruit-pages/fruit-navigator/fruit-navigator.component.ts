@@ -25,4 +25,16 @@ export class FruitNavigatorComponent {
   getNutritionParams(): NutritionSubmit {
     return this.paramsService.getNutritionParams();
   }
+
+  getSearchParams(): SearchParam {
+    let searchParam: SearchParam = {
+      term: this.paramsService.getFruitSearch()
+    }
+
+    return searchParam;
+  }
+}
+
+interface SearchParam {
+  term: string
 }
