@@ -1,5 +1,7 @@
-<div>
-    <p>Name: {{ fruit.name }}</p>
-    <p>Genus: {{ fruit.genus }}</p>
-    <a [routerLink]="['../details', fruit.id]" (click)="onClick()">Details</a>
-</div>
+<tr>
+    <td>{{ fruit.name }}</td>
+    <td>{{ fruit.genus }}</td>
+    <td>
+        <a [routerLink]="['../details', fruit.id]" (click)="onClick()">Details</a>
+    </td>
+</tr>
