@@ -2,7 +2,7 @@
 <fd-fruit-selector *ngIf="needSelector" (nutrition)="onNutritionSubmission($event)"></fd-fruit-selector>
 <fd-fruit-search *ngIf="needSearch" (search)="onSearchSubmission($event)"></fd-fruit-search>
 
-<table>
+<table *ngIf="fruits$ | async">
     <tr>
         <th>Name:</th>
         <th>Genus:</th>
@@ -13,3 +13,5 @@
         [fruit]="fruit">
     </fd-fruit-list-item>
 </table>
+
+<p *ngIf="!(fruits$ | async)">No Search Results</p>
