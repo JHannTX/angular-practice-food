@@ -9,20 +9,13 @@ import { MealsService } from './services/meals.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'food';
 
-  constructor(private cocktailsService: CocktailsService, 
-    private fruitsService: FruitsService,
+  constructor(private cocktailsService: CocktailsService,
     private mealsService: MealsService) {}
 
   ngOnInit() {
     this.cocktailsService.search('name', 'margarita')
       .subscribe(response => {
-        console.log(response);
-      });
-
-    this.fruitsService.all()
-      .subscribe((response) => {
         console.log(response);
       });
 

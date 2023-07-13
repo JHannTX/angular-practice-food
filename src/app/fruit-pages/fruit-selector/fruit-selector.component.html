@@ -1,0 +1,11 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <label for="nutrition">Nutrition:</label><br>
+    <select name="nutrition" id="nutrition" formControlName="nutritions">
+        <option *ngFor="let nutrition of nutritions$ | async" value="{{ nutrition }}">{{ nutrition | titlecase}}</option>
+    </select><br>
+    <label for="min">Min:</label>
+    <label for="max">Max:</label><br>
+    <input type="number" name="min" id="mid" formControlName="min">
+    <input type="number" name="max" id="max" formControlName="max">
+    <input type="submit">
+</form>

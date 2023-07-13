@@ -1,8 +1,9 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError } from 'rxjs/operators';
+import { NUTRITION_LIST } from '../constants/fruit-constants';
 import { ServiceConstants } from '../constants/service-constants';
 
 @Injectable({
@@ -11,8 +12,10 @@ import { ServiceConstants } from '../constants/service-constants';
 export class FruitsService {
   private constants = this.serviceConstants.FRUITS_URL;
   private baseUrl = this.serviceConstants.CORS_FIX_URL + this.constants.BASE_FRUITS_URL;
+  private storedFruit!: Fruit;
 
-  constructor(private serviceConstants: ServiceConstants, private http: HttpClient) { }
+  constructor(private serviceConstants: ServiceConstants, 
+    private http: HttpClient) { }
 
   // These are the api call wrappers
 
@@ -75,8 +78,20 @@ export class FruitsService {
 
   // Lists all available nutritions that can be searched upon
   listNutritions() {
-    const list: string[] = ['calories', 'fat', 'sugar', 'carbohydrates', 'protein'];
-    return of(list)
+    return of(NUTRITION_LIST)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  // Sends a fruit to a subject
+  sendFruit(fruit: Fruit): void {
+    this.storedFruit = fruit;
+  }
+
+  // Gets the fruit emitter subject as an observable to get the fruit
+  getFruit(): Observable<Fruit> {
+    return of(this.storedFruit)
       .pipe(
         catchError(this.handleError)
       );

@@ -4,11 +4,15 @@ This section details important experience with Angular.  Click [here](https://gi
 
 Links within this section direct to different sections of this readme for quick navigation.
 
+Here are the different major sections of this section of the readme: [Services](https://github.com/JHannTX/angular-practice-food#services), and [Routing](https://github.com/JHannTX/angular-practice-food#routing).
+
 If you have any feedback please feel free to let me know.  I am always looking to improve my coding skills.
 
 ## Services
 
 I made services that communicate with free to use API backends.  This was done to have a good source of data and simulate a full stack web development project.  The important concepts used in these files are [dependency injection](https://github.com/JHannTX/angular-practice-food#dependency-injection), [http client functions](https://github.com/JHannTX/angular-practice-food#http-client-functions), http error handling, [observables](https://github.com/JHannTX/angular-practice-food#observables), and TypeScript [interfaces](https://github.com/JHannTX/angular-practice-food#interfaces).
+
+There are currently three services: fruits service, cocktails service, and meals service.
 
 ### Dependency Injection
 
@@ -51,6 +55,10 @@ Throw error is used to emit an observable error, so that when the components exp
 Interfaces are an important part of TypeScript.  The define types that different objects need to adhear to.  They allow for better control over information by enforcing that certain properties need to exist.  I used interfaces due to this reason.  I also used a vs code extension that converts json into TypeScript interfaces called [JSON to TS](https://marketplace.visualstudio.com/items?itemName=MariusAlchimavicius.json-to-ts).  This allowed for faster translation of api responses into interfaces.
 
 Interfaces are used in all of the services.  The [fruits service](https://github.com/JHannTX/angular-practice-food/blob/services/src/app/services/fruits.service.ts) provides a simple example starting on line 81.  The [cocktails service](https://github.com/JHannTX/angular-practice-food/blob/services/src/app/services/cocktails.service.ts) has more interfaces and is more complex example which starts on line 265.
+
+## Routing
+
+Routing is obviously a very important concept in any web development, even static html pages.  It allows users to move around the site and gain the information they want.  Routing can be extremely complex with many moving parts to take into mind.
 
 # Important Angular Information
 

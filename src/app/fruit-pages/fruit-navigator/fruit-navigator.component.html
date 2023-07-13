@@ -1,0 +1,9 @@
+<header>
+    <nav>
+        <a [routerLink]="[prefix, 'all']">All</a>
+        <a [routerLink]="[prefix, 'nutrition']" [queryParams]="getNutritionParams()">Nutrition</a>
+        <a [routerLink]="[prefix, 'family']" [queryParams]="getSearchParams()">Family</a>
+        <a [routerLink]="[prefix, 'genus']" [queryParams]="getSearchParams()">Genus</a>
+        <a [routerLink]="[prefix, 'order']" [queryParams]="getSearchParams()">Order</a>
+    </nav>
+</header>

@@ -1,0 +1,17 @@
+<fd-fruit-navigator></fd-fruit-navigator>
+<fd-fruit-selector *ngIf="needSelector" (nutrition)="onNutritionSubmission($event)"></fd-fruit-selector>
+<fd-fruit-search *ngIf="needSearch" (search)="onSearchSubmission($event)"></fd-fruit-search>
+
+<table *ngIf="fruits$ | async">
+    <tr>
+        <th>Name:</th>
+        <th>Genus:</th>
+        <th>Details:</th>
+    </tr>
+    <fd-fruit-list-item 
+        *ngFor="let fruit of fruits$ | async"
+        [fruit]="fruit">
+    </fd-fruit-list-item>
+</table>
+
+<p *ngIf="!(fruits$ | async)">No Search Results</p>

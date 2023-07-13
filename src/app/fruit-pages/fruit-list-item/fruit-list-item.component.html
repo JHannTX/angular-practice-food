@@ -1,0 +1,7 @@
+<tr>
+    <td>{{ fruit.name }}</td>
+    <td>{{ fruit.genus }}</td>
+    <td>
+        <a [routerLink]="['../details', fruit.id]" (click)="onClick()">Details</a>
+    </td>
+</tr>
