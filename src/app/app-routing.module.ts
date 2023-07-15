@@ -18,6 +18,7 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  { path: 'cocktail', loadChildren: () => import('./cocktail-pages/cocktail.module').then(m => m.CocktailModule) },
   {
     path: '**',
     component: NotFoundComponent
