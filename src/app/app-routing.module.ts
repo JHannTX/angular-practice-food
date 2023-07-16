@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { AppHomeComponent } from './app-home/app-home.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
@@ -18,7 +19,11 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
-  { path: 'cocktail', loadChildren: () => import('./cocktail-pages/cocktail.module').then(m => m.CocktailModule) },
+  { 
+    path: 'cocktail', 
+    loadChildren: () => import('./cocktail-pages/cocktail.module').then(m => m.CocktailModule),
+    title: 'Cocktail'
+  },
   {
     path: '**',
     component: NotFoundComponent
