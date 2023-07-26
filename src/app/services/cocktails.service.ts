@@ -3,6 +3,7 @@ import { ServiceConstants } from '../constants/service-constants';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { getIndex } from '../shared/helper-functions';
 
 
 @Injectable({
@@ -143,7 +144,7 @@ export class CocktailsService {
 
   // Retrives the value from the enum for the type of parameter
   private getValue(type: string): string {
-    const indexOfType = Object.keys(Type).indexOf(type);
+    const indexOfType = getIndex(Type, type);
     return Object.values(Type)[indexOfType];
   }
 
