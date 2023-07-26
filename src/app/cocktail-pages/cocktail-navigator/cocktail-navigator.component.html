@@ -10,28 +10,28 @@
     <div>
         <p>Options for the Ingredients</p>
         <nav>
-            <a>Ingredient Name</a>
+            <a [routerLink]="['ingredient']">Ingredient Name</a>
         </nav>
     </div>
     <div>
         <p>Options for the Lists</p>
         <nav>
-            <a>Categories</a>
-            <a>Ingredients</a>
-            <a>Glasses</a>
-            <a>Alcohol</a>
+            <a [routerLink]="['list']">Categories</a>
+            <a [routerLink]="['list']">Ingredients</a>
+            <a [routerLink]="['list']">Glasses</a>
+            <a [routerLink]="['list']">Alcohol</a>
         </nav>
     </div>
     <div>
         <p>Options for Cocktail searches</p>
         <nav>
-            <a [routerLink]="" [queryParams]="">Name</a>
-            <a [routerLink]="" [queryParams]="">Letter</a>
-            <a [routerLink]="" [queryParams]="">Random</a>
-            <a [routerLink]="" [queryParams]="">Ingredient</a>
-            <a [routerLink]="" [queryParams]="">Alcohol</a>
-            <a [routerLink]="" [queryParams]="">Category</a>
-            <a [routerLink]="" [queryParams]="">Glass</a>
+            <a [routerLink]="['cocktail', 'name']" [queryParams]="">Name</a>
+            <a [routerLink]="['cocktail', 'letter']" [queryParams]="">Letter</a>
+            <a [routerLink]="['cocktail', 'random']" [queryParams]="">Random</a>
+            <a [routerLink]="['cocktail', 'ingredient']" [queryParams]="">Ingredient</a>
+            <a [routerLink]="['cocktail', 'alcohol']" [queryParams]="">Alcohol</a>
+            <a [routerLink]="['cocktail', 'category']" [queryParams]="">Category</a>
+            <a [routerLink]="['cocktail', 'glass']" [queryParams]="">Glass</a>
         </nav>
     </div>
 </header>

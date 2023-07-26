@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { CocktailRoutingModule } from './cocktail-routing.module';
 import { CocktailNavigatorComponent } from './cocktail-navigator/cocktail-navigator.component';
@@ -12,16 +13,16 @@ import { CocktailIngredientItemComponent } from './cocktail-ingredient-item/cock
 
 @NgModule({
   declarations: [
-  
     CocktailNavigatorComponent,
-       CocktailHomeComponent,
-       CocktailListItemComponent,
-       CocktailListComponent,
-       CocktailCocktailItemComponent,
-       CocktailIngredientItemComponent
+    CocktailHomeComponent,
+    CocktailListItemComponent,
+    CocktailListComponent,
+    CocktailCocktailItemComponent,
+    CocktailIngredientItemComponent
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     CocktailRoutingModule
   ]
 })

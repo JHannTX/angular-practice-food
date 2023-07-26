@@ -1,0 +1,1 @@
+export const COCKTAIL_SEARCH_TYPES: string[] = ['name', 'letter', 'ingredient', 'category', 'alcohol', 'glass'];
