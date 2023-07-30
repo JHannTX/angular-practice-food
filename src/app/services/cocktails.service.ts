@@ -80,7 +80,7 @@ export class CocktailsService {
   }
 
   // Filters cocktails based on different conditions
-  // The different parameters allowed are ingredients, alchoholic, category, and glass
+  // The different parameters allowed are ingredients, alcoholic, category, and glass
   filter(type: string, paramter: string) {
     const url: string = this.baseUrl + this.constants.FILTER_COCKTAILS_URL + this.getValue(type) + '=' + paramter;
     return this.http.get<FilterDrinkResponse>(url)
@@ -128,12 +128,12 @@ export class CocktailsService {
       );
   }
 
-  // Lists all alchohol that can be filted by
-  listAlchohol() {
+  // Lists all alcohol that can be filted by
+  listalcohol() {
     const url: string = this.baseUrl + this.constants.LIST_COCKTAILS_URL + 'a=list';
-    return this.http.get<AlchoholListResponse>(url)
+    return this.http.get<alcoholListResponse>(url)
       .pipe(
-        map((response: AlchoholListResponse) => {
+        map((response: alcoholListResponse) => {
           return response.drinks;
         }),
         catchError(this.handleError)
@@ -405,12 +405,12 @@ export interface GlassesList {
   strGlass: string;
 }
 
-// Interface used to hold the response for the list of alchohol
-interface AlchoholListResponse {
-  drinks: AlchoholList[];
+// Interface used to hold the response for the list of alcohol
+interface alcoholListResponse {
+  drinks: alcoholList[];
 }
 
-// The alchohol list object
-export interface AlchoholList {
-  strAlchoholic: string;
+// The alcohol list object
+export interface alcoholList {
+  stralcoholic: string;
 }
