@@ -129,11 +129,11 @@ export class CocktailsService {
   }
 
   // Lists all alcohol that can be filted by
-  listalcohol() {
+  listAlcohol() {
     const url: string = this.baseUrl + this.constants.LIST_COCKTAILS_URL + 'a=list';
-    return this.http.get<alcoholListResponse>(url)
+    return this.http.get<AlcoholListResponse>(url)
       .pipe(
-        map((response: alcoholListResponse) => {
+        map((response: AlcoholListResponse) => {
           return response.drinks;
         }),
         catchError(this.handleError)
@@ -406,11 +406,11 @@ export interface GlassesList {
 }
 
 // Interface used to hold the response for the list of alcohol
-interface alcoholListResponse {
-  drinks: alcoholList[];
+interface AlcoholListResponse {
+  drinks: AlcoholList[];
 }
 
 // The alcohol list object
-export interface alcoholList {
-  stralcoholic: string;
+export interface AlcoholList {
+  strAlcoholic: string;
 }
