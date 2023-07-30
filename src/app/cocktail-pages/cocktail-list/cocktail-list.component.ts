@@ -16,6 +16,7 @@ export class CocktailListComponent {
     this.route.paramMap
       .subscribe((params) => {
         if(params.has('search')) {
+          this.reset();
           let search: string = params.get('search')!;
 
           if(search === 'cocktail') {
@@ -27,6 +28,12 @@ export class CocktailListComponent {
           }
         }
       });
+  }
+
+  private reset() {
+    this.isCocktail = false;
+    this.isIngredient = false;
+    this.isList = false;
   }
 
 }

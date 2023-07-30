@@ -1,1 +1,14 @@
-<p>cocktail-list-item works!</p>
+<table>
+    <tr>
+        <th>Name:</th>
+        <th>Details:</th>
+    </tr>
+    <tr *ngFor="let item of list$ | async">
+        <td>{{ item.strCategory || item.strGlass || item.strAlcoholic || item.strIngredient1}}</td>
+        <td>
+            <!-- <a [routerLink]="['../details', fruit.id]" (click)="onClick()">Details</a> -->
+            <a>Details</a>
+        </td>
+    </tr>
+
+</table>
