@@ -255,7 +255,7 @@ enum Type {
   name = 's',
   letter = 'f',
   ingredient = 'i',
-  alcoholic = 'a',
+  alcohol = 'a',
   category = 'c',
   glass = 'g',
 }
